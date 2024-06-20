@@ -1,5 +1,9 @@
-import React from "react";
+import { ResetIcon } from "@radix-ui/react-icons";
 
 export default function ResetButton() {
-  return <div>ResetButton</div>;
+  return (
+    <div className="reset-btn">
+      <ResetIcon className="reset-btn-icon" />
+    </div>
+  );
 }

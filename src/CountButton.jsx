@@ -1,5 +1,9 @@
-import React from "react";
+import { MinusIcon } from "@radix-ui/react-icons";
 
 export default function CountButton() {
-  return <div>CountButton</div>;
+  return (
+    <div className="count-btn">
+      <MinusIcon className="count-btn-icon" />
+    </div>
+  );
 }

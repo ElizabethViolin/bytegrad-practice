@@ -1,7 +1,3 @@
-import React from 'react'
-
 export default function Title() {
-  return (
-    <div>Title</div>
-  )
+  return <div className="title">Fancy Counter</div>;
 }
