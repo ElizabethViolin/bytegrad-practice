@@ -1,3 +1,3 @@
-export default function Count() {
-  return <div className="count">0</div>;
+export default function Count({ count }) {
+  return <div className="count">{count}</div>;
 }
