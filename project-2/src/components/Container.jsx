@@ -17,9 +17,9 @@ export default function Container() {
   };
 
   return (
-    <div className="container">
+    <main className="container">
       <Textarea text={text} setText={setText} />
       <Stats stats={stats} />
-    </div>
+    </main>
   );
 }
