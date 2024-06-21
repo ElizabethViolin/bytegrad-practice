@@ -9,6 +9,6 @@ export default function Textarea({ setText }) {
       className="textarea"
       onChange={handleChange}
       placeholder="Enter your text"
-    ></textarea>
+    />
   );
 }

@@ -1,22 +1,19 @@
 export default function Stats({ stats }) {
   return (
     <div className="stats">
-      <div className="stat">
-        <h2 className="stat__number">{stats.numberOfWords}</h2>
-        <span className="second-heading">Words</span>
-      </div>
-      <div className="stat">
-        <h2 className="stat__number">{stats.numberOfCharacters}</h2>
-        <span className="second-heading">Characters</span>
-      </div>
-      <div className="stat">
-        <h2 className="stat__number">{stats.instagramCharactersLeft}</h2>
-        <span className="second-heading">Instagram</span>
-      </div>
-      <div className="stat">
-        <h2 className="stat__number">{stats.facebookCharactersLeft}</h2>
-        <span className="second-heading">Facebook</span>
-      </div>
+      <Stat number={stats.numberOfWords} description={"Words"} />
+      <Stat number={stats.numberOfCharacters} description={"Characters"} />
+      <Stat number={stats.instagramCharactersLeft} description={"Instagram"} />
+      <Stat number={stats.facebookCharactersLeft} description={"Facebook"} />
+    </div>
+  );
+}
+
+function Stat({ number, description }) {
+  return (
+    <div className="stat">
+      <h2 className="stat__number">{number}</h2>
+      <span className="second-heading">{description}</span>
     </div>
   );
 }
