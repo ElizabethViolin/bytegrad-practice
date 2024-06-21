@@ -18,7 +18,7 @@ export default function Container() {
 
   return (
     <div className="container">
-      <Textarea setText={setText} />
+      <Textarea text={text} setText={setText} />
       <Stats stats={stats} />
     </div>
   );
