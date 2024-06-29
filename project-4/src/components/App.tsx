@@ -1,19 +1,31 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Container from "./layout/Container";
 import Footer from "./layout/Footer";
-import HashtagList from "./HashtagList";
+import HashtagList from "./hashtag/HashtagList";
 import { TFeedbackItem } from "../types/types";
 
 function App() {
   const [feedbackItems, setFeedbackItems] = useState<TFeedbackItem[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessages, setErrorMessages] = useState("");
+  const [selectedCompany, setSelectedCompany] = useState("");
+
+  const filteredFeedbackItems = useMemo(
+    () =>
+      selectedCompany
+        ? feedbackItems.filter(
+            (feedbackItem) => feedbackItem.company === selectedCompany
+          )
+        : feedbackItems,
+    [feedbackItems, selectedCompany]
+  );
+
+  const companyList = feedbackItems
+    .map((item) => item.company)
+    .filter((company, index, array) => array.indexOf(company) === index);
 
   const handleAddFeedbackItem = async (text: string) => {
-    const companyName = text
-      .split(" ")
-      .find((word) => word.includes("#"))!
-      .substring(1);
+    const companyName = feedbackItems.map((item) => item.company)[0];
 
     const newItem: TFeedbackItem = {
       id: new Date().getTime(),
@@ -60,6 +72,10 @@ function App() {
   //     });
   // }, []);
 
+  const handleSelectCompany = (company: string) => {
+    setSelectedCompany(company);
+  };
+
   useEffect(() => {
     const fetchFeedbackItems = async () => {
       setIsLoading(true);
@@ -91,13 +107,16 @@ function App() {
       <Footer />
 
       <Container
-        feedbackItems={feedbackItems}
+        feedbackItems={filteredFeedbackItems}
         handleAddFeedbackItem={handleAddFeedbackItem}
         isLoading={isLoading}
         errorMessages={errorMessages}
       />
 
-      <HashtagList />
+      <HashtagList
+        companyList={companyList}
+        handleSelectCompany={handleSelectCompany}
+      />
     </div>
   );
 }
